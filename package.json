@@ -2,8 +2,10 @@
   "name": "fc00",
   "version": "0.0.0",
   "description": "CLI for the fc00::/8 network",
-  "main": "index.js",
+  "bin": "fc00.js",
+  "main": "lib/index.js",
   "scripts": {
+    "install": "./fc00.js install && ./fc00.js init",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,5 +16,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fc00/node-fc00/issues"
+  },
+  "dependencies": {
+    "ronin": "^0.3.11"
   }
 }

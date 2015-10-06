@@ -7,3 +7,5 @@ This is an early work in progress. It is unstable, buggy, and incomplete. YMMV.
 ```
 $ npm install fc00
 ```
+
+## Commands
