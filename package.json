@@ -5,7 +5,8 @@
   "bin": "fc00.js",
   "main": "lib/index.js",
   "scripts": {
-    "install": "./fc00.js install && ./fc00.js init",
+    "preinstall": "[ -d cjdns ] || git clone https://github.com/hyperboria/cjdns",
+    "install": "cd cjdns && ./clean && ./do",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
