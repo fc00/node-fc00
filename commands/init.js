@@ -11,9 +11,11 @@ module.exports = Command.extend({
     var fc00Path = process.env['FC00_PATH'] || process.env['HOME'] + '/.fc00';
     var cjdnsPath = fs.realpathSync(__dirname + '/../cjdns');
 
-    var genconf = spawnSync('sh', ['-c', cjdnsPath + '/cjdroute --genconf | ' + cjdnsPath + '/cjdroute --cleanconf']);
-    if (genconf.error) {
-      return console.error(genconf.error);
+    var cmd = cjdnsPath + '/cjdroute --genconf | '
+            + cjdnsPath + '/cjdroute --cleanconf';
+    var genconf = spawnSync('sh', ['-c', cmd]);
+    if (genconf.status !== 0) {
+      return console.error(genconf.stderr.toString());
     }
     var conf = JSON.parse(genconf.stdout);
 
@@ -31,6 +33,6 @@ module.exports = Command.extend({
       fs.writeFileSync(path, conf.privateKey, {mode: 0400})
     });
 
-    console.log('finished: your fc00::/8 address: ' + conf.ipv6);
+    console.log('your fc00::/8 address: ' + conf.ipv6);
   }
 });
