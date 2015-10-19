@@ -33,6 +33,7 @@ module.exports = Command.extend({
       fs.writeFileSync(path, conf.privateKey, {mode: 0400})
     });
 
+    // XXX should print ipv6 derived from private_key...
     console.log('your fc00::/8 address: ' + conf.ipv6);
   }
 });
