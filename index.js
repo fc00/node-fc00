@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var fc00rc = require("fc00rc");
+var Fc00rc = require("fc00rc");
 var PadIpv6 = require('pad-ipv6');
 var Addr = require("fc00-addr");
 
@@ -14,8 +14,13 @@ if (!/(fc00|index)/.test(process.argv[1])) {
 }
 
 var helpMenu = function () {
-    console.log(args);
-    console.log("HALP");
+    console.log("Try one of: ");
+    [
+    "init",
+    "addr",
+    "pad",
+    ].forEach(function (cmd) { console.log("\tfc00 " + cmd); });
+
     process.exit(1);
 };
 
@@ -39,6 +44,18 @@ switch (args[0]) {
                 console.log(addrs[0]);
                 process.exit(0);
             }
+        }());
+        break;
+    case 'init':
+        (function () {
+            if (Fc00rc.exists()) {
+                console.error("%s already exists", Fc00rc.path);
+                process.exit(1);
+            }
+
+            console.log("Creating %s", Fc00rc.path);
+            Fc00rc.read();
+            process.exit(0);
         }());
         break;
     case 'pad':
