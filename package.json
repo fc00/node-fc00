@@ -2,23 +2,23 @@
   "name": "fc00",
   "version": "0.0.1",
   "description": "CLI for the fc00::/8 network",
-  "bin": "fc00.js",
-  "main": "lib/index.js",
-  "scripts": {
-    "preinstall": "[ -d cjdns ] || git clone https://github.com/hyperboria/cjdns",
-    "install": "cd cjdns && ./clean && ./do",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "bin": "index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/fc00/node-fc00.git"
   },
   "author": "Lars Gierth <larsg@systemli.org>",
+  "contributors": [
+    "ansuz@transitiontech.ca"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fc00/node-fc00/issues"
   },
   "dependencies": {
-    "ronin": "^0.3.11"
+    "fc00-addr": "^1.0.1",
+    "fc00rc": "^1.0.2",
+    "pad-ipv6": "^1.0.1"
   }
 }
