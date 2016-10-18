@@ -42,6 +42,7 @@ switch (args[0]) {
         }());
         break;
     case 'pad':
+    case 'pretty':
         (function () {
             if (args[1]) {
                 if (/[^a-f0-9:]/.test(args[1])) {
@@ -54,7 +55,7 @@ switch (args[0]) {
                 console.log(padded);
                 process.exit(0);
             }
-            console.error("Insufficient arguments provided. Try `fc00 pad <ipv6>`");
+            console.error("Insufficient arguments provided. Try `fc00 pretty <ipv6>`");
             process.exit(0);
         }());
         break;
