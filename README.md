@@ -21,3 +21,24 @@ fc00 addr
 fc00 pad <ipv6>
 ```
 
+### Proposed commands
+
+```
+# install cjdns
+fc00 install
+
+# update cjdns
+fc00 update
+
+# generate a cjdns configuration file
+fc00 genconf
+
+# add a public peer from North America
+fc00 peer add public na
+
+# launch cjdns
+fc00 up
+
+# kill cjdns
+fc00 down
+```
