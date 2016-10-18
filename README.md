@@ -9,3 +9,15 @@ $ npm install fc00
 ```
 
 ## Commands
+
+```
+# initialize fc00 (create ~/.fc00rc)
+fc00 init
+
+# list your fc00 ip
+fc00 addr
+
+# expand an ipv6 to its full 39 character representation
+fc00 pad <ipv6>
+```
+
