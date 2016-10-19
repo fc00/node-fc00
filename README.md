@@ -39,6 +39,44 @@ fc00 peer add public na
 # launch cjdns
 fc00 up
 
-# kill cjdns
+# terminate cjdns
 fc00 down
+
+# check what version of fc00 and cjdns you're running
+fc00 version
+
+# add a password to your running configuration file
+fc00 password
+
+# ping a cjdns address or public key
+fc00 ping
+
+# get statistics about your peers
+fc00 peer stats
+
+# convert a public key to a padded ipv6
+fc00 pub-to-ipv6
+
+# convert a private key to a public key
+# or convert a public key to an ipv6
+# takes any number of arguments to convert
+fc00 convert <privkey> <pubkey>
+
+# generate the corresponding public key for a private key
+fc00 ???
+
+# generate a bug report
+fc00 report
+```
+
+### Commands which might not make sense anymore
+
+```
+
+# pathfinder tree
+fc00 tree
+
+# sort a list of ipv6s
+fc00 sort <list> <of> <addresses>
+
 ```

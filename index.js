@@ -53,10 +53,26 @@ switch (args[0]) {
                 process.exit(1);
             }
 
+            /* TODO
+             * set a path to a cjdns repository
+             * make .fc00 in your home folder
+             * ~/.fc00rc
+             * ~/.fc00
+             * ~/.fc00/config
+             *
+             */
             console.log("Creating %s", Fc00rc.path);
             Fc00rc.read();
             process.exit(0);
         }());
+        break;
+    case 'install':
+    case 'update':
+    case 'genconf':
+    case 'peer':
+    case 'up':
+    case 'down':
+        console.log("`fc00 %s` is not implemented yet", args[0]);
         break;
     case 'pad':
     case 'pretty':
