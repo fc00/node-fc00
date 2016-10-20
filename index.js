@@ -68,6 +68,52 @@ switch (args[0]) {
             process.exit(0);
         }());
         break;
+
+    case 'keys':
+        (function () {
+            args.shift();
+
+
+            if (!args.length) {
+                console.error("fc00 keys:\n\tconvert private keys to public keys,\n\tand public keys to IP addresses");
+                process.exit(1);
+            }
+
+            var next = args.shift();
+
+            var errored;
+
+            if (next === 'convert') {
+                if (!args.length) {
+                    console.log("Nothing to convert");
+                    process.exit(1);
+                }
+
+                args.forEach(function (arg) {
+                    try {
+                        if (arg.length === 64 && !/[^a-f0-9]/i.test(arg)) {
+                            // it might be a private key
+                            console.log(Fc00.keys.privateToPublic(arg));
+                        }
+                        else if (arg.length === 54 && /\.k$/.test(arg)) {
+                            console.log(Fc00.padIpv6(Fc00.keys.publicToIp6(arg)));
+                        } else {
+                            console.error('invalid input: %s', arg);
+                            errored = true;
+                        }
+                    } catch (err) {
+                        console.error(err);
+                        errored = true;
+                    }
+                });
+                process.exit(errored?1: 0);
+            } else {
+                console.log("Not implemented yet");
+            }
+
+            process.exit(1);
+        }());
+        break;
     case 'install':
     case 'update':
     case 'genconf':
