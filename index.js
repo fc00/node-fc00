@@ -107,6 +107,15 @@ switch (args[0]) {
                     }
                 });
                 process.exit(errored?1: 0);
+            } else if (['generate', 'keyPair'].indexOf(next) !== -1) {
+                // TODO maybe inject these keys into a profile?
+
+                var keys = Fc00.keys.keyPair();
+                console.log();
+                ['privateKey', 'publicKey', 'ip6'].forEach(function (k) {
+                    console.log("%s:%s%s", k, Array(12-k.length).fill(" ").join(""),  keys[k]);
+                });
+                process.exit(0);
             } else {
                 console.log("Not implemented yet");
             }

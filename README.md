@@ -40,6 +40,9 @@ fc00 keys convert <privkey>
 fc00 keys convert <pubkey>
 fc00 keys convert <pubkey> <privkey> <pubkey> <etc>
 
+# generate a public-private keypair, and an IPv6
+fc00 keys keyPair
+
 # find what version of fc00 you have installed
 fc00 version
 
