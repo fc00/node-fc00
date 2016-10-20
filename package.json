@@ -19,6 +19,7 @@
   "dependencies": {
     "fc00-addr": "^1.0.1",
     "fc00rc": "^1.1.0",
-    "pad-ipv6": "^1.0.1"
+    "pad-ipv6": "^1.0.1",
+    "cjdnskeys": "^0.1.0"
   }
 }
