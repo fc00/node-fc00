@@ -8,7 +8,22 @@ This is an early work in progress. It is unstable, buggy, and incomplete. YMMV.
 $ npm install fc00
 ```
 
-## Commands
+## Usage as a library
+
+```javascript
+var Fc00 = require("fc00");
+
+// list your fc00 address(es) (array)
+console.log(Fc00.addr());
+
+// check your version of fc00
+Fc00.version();
+
+// expand an ip to its full 39 character representation
+Fc00.padIpv6("fc00::");
+```
+
+## Command Line Interface
 
 ```
 # initialize fc00 (create ~/.fc00rc)

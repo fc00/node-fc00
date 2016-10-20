@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
-var Fc00rc = require("fc00rc");
-var PadIpv6 = require('pad-ipv6');
-var Addr = require("fc00-addr");
+var Fc00 = require("./lib/");
 
 var args = process.argv.slice(2);
+
+(function () {
+// if not called from the command line, export as a module, terminate
+if (require.main !== module) { return module.exports = Fc00; }
 
 if (!/node/.test(process.argv[0])) {
     throw new Error("Expected first argument to be node, got "+ process.argv[0]);
@@ -30,7 +32,7 @@ switch (args[0]) {
     case 'addr':
     case 'a':
         (function () {
-            var addrs = Addr();
+            var addrs = Fc00.addr();
             if (!addrs.length) {
                 console.log("Couldn't find an fc00 address");
                 process.exit(1);
@@ -41,15 +43,15 @@ switch (args[0]) {
                 process.exit(1);
             }
             if (addrs.length === 1) {
-                console.log(addrs[0]);
+                console.log(Fc00.padIpv6(addrs[0]));
                 process.exit(0);
             }
         }());
         break;
     case 'init':
         (function () {
-            if (Fc00rc.exists()) {
-                console.error("%s already exists", Fc00rc.path);
+            if (Fc00.rc.exists()) {
+                console.error("%s already exists", Fc00.rc.path);
                 process.exit(1);
             }
 
@@ -61,8 +63,8 @@ switch (args[0]) {
              * ~/.fc00/config
              *
              */
-            console.log("Creating %s", Fc00rc.path);
-            Fc00rc.read();
+            console.log("Creating %s", Fc00.rc.path);
+            Fc00.rc.read();
             process.exit(0);
         }());
         break;
@@ -83,7 +85,7 @@ switch (args[0]) {
                     process.exit(1);
                 }
 
-                var padded = PadIpv6(args[1]);
+                var padded = Fc00.padIpv6(args[1]);
 
                 console.log(padded);
                 process.exit(0);
@@ -92,6 +94,14 @@ switch (args[0]) {
             process.exit(0);
         }());
         break;
+    case 'version':
+    case 'v':
+        (function () {
+            console.log(Fc00.version());
+        }());
+        break;
     default:
         helpMenu();
 }
+
+}());
