@@ -34,6 +34,15 @@ fc00 addr
 
 # expand an ipv6 to its full 39 character representation
 fc00 pad <ipv6>
+
+# convert keys
+fc00 keys convert <privkey>
+fc00 keys convert <pubkey>
+fc00 keys convert <pubkey> <privkey> <pubkey> <etc>
+
+# find what version of fc00 you have installed
+fc00 version
+
 ```
 
 ### Proposed commands
@@ -57,9 +66,6 @@ fc00 up
 # terminate cjdns
 fc00 down
 
-# check what version of fc00 and cjdns you're running
-fc00 version
-
 # add a password to your running configuration file
 fc00 password
 
@@ -68,14 +74,6 @@ fc00 ping
 
 # get statistics about your peers
 fc00 peer stats
-
-# convert a public key to a padded ipv6
-fc00 pub-to-ipv6
-
-# convert a private key to a public key
-# or convert a public key to an ipv6
-# takes any number of arguments to convert
-fc00 convert <privkey> <pubkey>
 
 # generate the corresponding public key for a private key
 fc00 ???
