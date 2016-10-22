@@ -1,6 +1,6 @@
 {
   "name": "fc00",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "CLI for the fc00::/8 network",
   "bin": "index.js",
   "main": "index.js",

@@ -65,9 +65,11 @@ fc00 peer add public na
 
 # launch cjdns
 fc00 up
+fc00 start
 
 # terminate cjdns
 fc00 down
+fc00 stop
 
 # add a password to your running configuration file
 fc00 password

@@ -18,9 +18,13 @@ if (!/(fc00|index)/.test(process.argv[1])) {
 var helpMenu = function () {
     console.log("Try one of: ");
     [
+    "help",
     "init",
     "addr",
-    "pad",
+    "pad <ipv6>",
+    "keys convert <publicKey OR privateKey> ...",
+    "keys keyPair",
+    "version",
     ].forEach(function (cmd) { console.log("\tfc00 " + cmd); });
 
     process.exit(1);
@@ -29,6 +33,11 @@ var helpMenu = function () {
 if (!args.length) { helpMenu(); }
 
 switch (args[0]) {
+    case 'help':
+    case 'h':
+        helpMenu();
+        process.exit(0);
+        break;
     case 'addr':
     case 'a':
         (function () {
