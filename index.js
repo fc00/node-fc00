@@ -64,20 +64,46 @@ switch (args[0]) {
                 process.exit(1);
             }
 
-            /* TODO
-             * set a path to a cjdns repository
-             * make .fc00 in your home folder
-             * ~/.fc00rc
-             * ~/.fc00
-             * ~/.fc00/config
-             *
-             */
-            console.log("Creating %s", Fc00.rc.path);
-            Fc00.rc.read();
+            var profile;
+            if (!Fc00.rc.profile.exists('default')) {
+                profile = Fc00.profile.create();
+                profile.setSaneDefaults();
+            }
+
+            console.log("Initializing fc00");
+            Fc00.rc.init({}, profile);
             process.exit(0);
         }());
         break;
 
+    case 'profile':
+        (function () {
+            var nope = function (p) {
+                console.error("%s doesn't exist. Try running 'fc00 init'", p);
+                process.exit(1);
+            };
+
+            if (!Fc00.rc.exists()) { nope(Fc00.rc.path); }
+
+            var rc = Fc00.rc.read();
+            var p = rc.profile;
+
+            if (!Fc00.rc.profile.exists(p)) { nope(Fc00.rc.profile.path(p)); }
+
+            var profile = Fc00.rc.profile.read(p);
+
+            var parsed;
+            try {
+                parsed = JSON.parse(profile);
+            } catch (err) {
+                console.error("profile is not valid json!");
+                process.exit(1);
+            }
+
+            console.log(JSON.stringify(parsed));
+            process.exit(0);
+        }());
+        break;
     case 'keys':
         (function () {
             args.shift();
