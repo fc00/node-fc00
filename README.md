@@ -46,6 +46,20 @@ fc00 keys keyPair
 # find what version of fc00 you have installed
 fc00 version
 
+# list the profiles you have available, emphasis on active profile
+fc00 profile
+
+# generate and name a new profile
+fc00 profile add <name>
+
+# remove a profile by name
+fc00 profile rm <name>
+fc00 profile remove <name>
+
+# add a peer from the public listing, searching by location
+# not sure about this syntax yet
+fc00 peer add public <name> location <selectors>
+fc00 peer add public <name> peerName <selectors>
 ```
 
 ### Proposed commands
@@ -90,11 +104,6 @@ fc00 report
 ### Commands which might not make sense anymore
 
 ```
-
-# pathfinder tree
-fc00 tree
-
 # sort a list of ipv6s
 fc00 sort <list> <of> <addresses>
-
 ```

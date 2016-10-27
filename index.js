@@ -162,6 +162,11 @@ switch (args[0]) {
     case 'update':
     case 'genconf':
     case 'peer':
+        (function () {
+            console.error("Not implented yet");
+            process.exit(1);
+        }());
+        break;
     case 'up':
     case 'down':
         console.log("`fc00 %s` is not implemented yet", args[0]);

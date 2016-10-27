@@ -1,6 +1,6 @@
 {
   "name": "fc00",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI for the fc00::/8 network",
   "bin": "index.js",
   "main": "index.js",
@@ -19,6 +19,7 @@
   "dependencies": {
     "cjdnskeys": "^0.1.0",
     "fc00-addr": "^1.0.1",
+    "fc00-peers-client": "^1.0.0",
     "fc00-profile": "^1.0.0",
     "fc00rc": "^1.2.0",
     "pad-ipv6": "^1.0.1"
