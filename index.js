@@ -21,46 +21,37 @@ if (!/(fc00|index)/.test(process.argv[1])) {
 if (!args.length) { Cmd.help(args); }
 
 switch (args[0]) {
-    case 'help':
-    case 'h':
-        Cmd.help(args);
-        process.exit(0);
-        break;
     case 'addr':
     case 'a':
-        Cmd.address(args);
-        break;
+        process.exit(Cmd.address(args));
     case 'init':
-        Cmd.init(args);
-        break;
+        process.exit(Cmd.init(args));
     case 'profile':
-        Cmd.profile(args);
-        break;
+        process.exit(Cmd.profile(args));
     case 'keys':
-        Cmd.keys(args);
-        break;
+        process.exit(Cmd.keys(args));
     case 'install':
     case 'update':
     case 'genconf':
     case 'peer':
         console.error(L10n.render('e_not_implemented', [args[0]]));
         process.exit(1);
-        break;
     case 'up':
+    case 'start':
+        process.exit(Cmd.start(args));
     case 'down':
-        console.error(L10n.render('e_not_implemented', [args[0]]));
-        process.exit(1);
-        break;
+    case 'stop':
+        process.exit(Cmd.stop(args));
     case 'pad':
     case 'pretty':
-        Cmd.pad(args);
-        break;
+        process.exit(Cmd.pad(args));
     case 'version':
     case 'v':
-        Cmd.version(args);
-        break;
+        process.exit(Cmd.version(args));
+    case 'help':
+    case 'h':
     default:
-        Cmd.help(args);
+        process.exit(Cmd.help(args));
 }
 
 }());

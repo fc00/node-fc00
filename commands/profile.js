@@ -3,7 +3,7 @@ module.exports = function (Fc00, L10n) {
         var nope = function (p) {
             console.error(L10n.render('e_no_exists', [p]));
             console.error(L10n.render('h_try_init'));
-            process.exit(1);
+            return 1;
         };
 
         if (!Fc00.rc.exists()) { nope(Fc00.rc.path); }
@@ -20,10 +20,10 @@ module.exports = function (Fc00, L10n) {
             parsed = JSON.parse(profile);
         } catch (err) {
             console.error(L10n.render('e_profile_invalid'));
-            process.exit(1);
+            return 1;
         }
 
         console.log(JSON.stringify(parsed));
-        process.exit(0);
+        return 0;
     };
 };

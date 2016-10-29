@@ -10,5 +10,6 @@ module.exports = function (Fc00, L10n) {
         "keys keyPair",
         "version",
         ].forEach(function (cmd) { console.log("\tfc00 " + cmd); });
+        return 0;
     };
 };

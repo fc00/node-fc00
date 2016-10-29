@@ -9,6 +9,8 @@ var Cmd = module.exports = {};
     'profile',
     'init',
     'address',
+    'start',
+    'stop',
 ].forEach(function (k) {
     Cmd[k] = require("./" + k)(Fc00, L10n);
 });
