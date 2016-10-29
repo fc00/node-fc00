@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+#!/bin/sh
+':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
 
 var Fc00 = require("./lib/");
 var L10n = require("./l10n/");
@@ -18,9 +19,10 @@ if (!/(fc00|index)/.test(process.argv[1])) {
     throw new Error("Expected second argument to be fc00, got " + process.argv[1]);
 }
 
-if (!args.length) { Cmd.help(args); }
+if (!args.length) { process.exit(Cmd.help(args)); }
 
 switch (args[0]) {
+    case 'address':
     case 'addr':
     case 'a':
         process.exit(Cmd.address(args));
@@ -29,7 +31,10 @@ switch (args[0]) {
     case 'profile':
         process.exit(Cmd.profile(args));
     case 'keys':
-        process.exit(Cmd.keys(args));
+        Cmd.keys(args, function (code) {
+            process.exit(code);
+        });
+        break;
     case 'install':
     case 'update':
     case 'genconf':
@@ -44,7 +49,10 @@ switch (args[0]) {
         process.exit(Cmd.stop(args));
     case 'pad':
     case 'pretty':
-        process.exit(Cmd.pad(args));
+        Cmd.pad(args, function (code) {
+            process.exit(code);
+        });
+        break;
     case 'version':
     case 'v':
         process.exit(Cmd.version(args));
