@@ -1,6 +1,6 @@
 {
   "name": "fc00",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "CLI for the fc00::/8 network",
   "bin": "index.js",
   "main": "index.js",
@@ -17,6 +17,7 @@
     "url": "https://github.com/fc00/node-fc00/issues"
   },
   "dependencies": {
+    "ansuz": "0.0.14",
     "cjdnskeys": "^0.1.0",
     "fc00-addr": "^1.0.1",
     "fc00-peers-client": "^1.0.0",
