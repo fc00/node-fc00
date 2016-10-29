@@ -1,10 +1,5 @@
-var Command = require('ronin').Command;
-var pkg = require('../package.json');
-
-module.exports = Command.extend({
-  desc: 'Show fc00 version',
-
-  run: function() {
-    console.log(pkg.version)
-  }
-});
+module.exports = function (Fc00, L10n) {
+    return function () {
+        console.log(Fc00.version());
+    };
+};

@@ -1,39 +1,18 @@
-var Command = require('ronin').Command;
-var pkg = require('../package.json');
+module.exports = function (Fc00, L10n) {
+    return function (args) {
+        if (Fc00.rc.exists()) {
+            console.error(L10n.render('e_exists', [Fc00.rc.path]));
+            process.exit(1);
+        }
 
-var fs = require('fs');
-var spawnSync = require('child_process').spawnSync;
+        var profile;
+        if (!Fc00.rc.profile.exists('default')) {
+            profile = Fc00.profile.create();
+            profile.setSaneDefaults();
+        }
 
-module.exports = Command.extend({
-  desc: 'Generate the configuration',
-
-  run: function() {
-    var fc00Path = process.env['FC00_PATH'] || process.env['HOME'] + '/.fc00';
-    var cjdnsPath = fs.realpathSync(__dirname + '/../cjdns');
-
-    var cmd = cjdnsPath + '/cjdroute --genconf | '
-            + cjdnsPath + '/cjdroute --cleanconf';
-    var genconf = spawnSync('sh', ['-c', cmd]);
-    if (genconf.status !== 0) {
-      return console.error(genconf.stderr.toString());
-    }
-    var conf = JSON.parse(genconf.stdout);
-
-    var unlessPresent = function(path, cb) {
-      try { fs.statSync(path); } catch (err) { cb(path); }
-    }
-
-    unlessPresent(fc00Path, function(path) {
-      console.log('create ' + path);
-      fs.mkdirSync(path);
-    });
-
-    unlessPresent(fc00Path + '/private_key', function(path) {
-      console.log('create ' + path);
-      fs.writeFileSync(path, conf.privateKey, {mode: 0400})
-    });
-
-    // XXX should print ipv6 derived from private_key...
-    console.log('your fc00::/8 address: ' + conf.ipv6);
-  }
-});
+        console.log(L10n.render('initializing'));
+        Fc00.rc.init({}, profile);
+        process.exit(0);
+    };
+};
